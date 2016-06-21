@@ -3,7 +3,7 @@
     .page-header
       .share.pull-right= event.tweet_button
       %h1
-        = link_to(event, event_path(event.slug))
+        = event.name
         %span.label.label-primary= event.status
 
 .row.margin-top

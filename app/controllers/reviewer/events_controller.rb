@@ -2,6 +2,7 @@ class Reviewer::EventsController < Reviewer::ApplicationController
   skip_before_filter :require_proposal
 
   def show
+    session[:event_id] = event.id
     participant = Participant.find_by(user_id: current_user)
     rating_counts = @event.ratings.group(:user_id).count
 
