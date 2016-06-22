@@ -60,14 +60,14 @@
                 %i.fa.fa-file-text
                 %span My Proposals
 
-          - if current_user.reviewer? && event
+          - if reviewer? && event && participant?(event)
             - if event.id != nil && !event.archived?
               %li{class: "#{request.path == reviewer_event_proposals_path(event.id) ? 'active' : ''}"}
                 = link_to reviewer_event_proposals_path(event.id) do
                   %i.fa.fa-book
                   %span Review Proposals
 
-          - if current_user.organizer? && event
+          - if organizer? && event && participant?(event)
             - if event.id != nil && !event.archived?
               %li{class: "#{request.path == organizer_event_proposals_path(event) ? 'active' : ''}"}
                 = link_to organizer_event_proposals_path(event) do
