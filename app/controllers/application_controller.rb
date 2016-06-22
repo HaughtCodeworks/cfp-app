@@ -8,6 +8,7 @@ class ApplicationController < ActionController::Base
   helper_method :user_signed_in?
   helper_method :reviewer?
   helper_method :organizer?
+  helper_method :participant?
 
   layout 'application'
   decorates_assigned :event
@@ -24,6 +25,11 @@ class ApplicationController < ActionController::Base
 
   def organizer?
     @is_organizer ||= current_user.organizer?
+  end
+
+  def participant?(event)
+    participants = event.participants.includes(:user)
+    participants.any? { |p| p.user_id == current_user.id }
   end
 
   def user_signed_in?
