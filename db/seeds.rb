@@ -56,9 +56,9 @@ track_2 = seed_event.tracks.create(name: "OK Track", description: "This track is
 track_3 = seed_event.tracks.create(name: "Boring Track", description: "Great if you want a nap!", guidelines: "Sleep deprivation is linked to many health problem. Get healthy here so you can be 100% for the Best Track.")
 
 # Rooms
-seed_event.rooms.create(name: "Sun Room", room_number: "SUN", level: "12", address: "123 Universe Drive", capacity: 300, event_id: seed_event.id)
-seed_event.rooms.create(name: "Moon Room", room_number: "MOON", level: "6", address: "123 Universe Drive", capacity: 150, event_id: seed_event.id)
-seed_event.rooms.create(name: "Venus Theater", room_number: "VEN-T", level: "2", address: "123 Universe Drive", capacity: 75, event_id: seed_event.id)
+seed_event.rooms.create(name: "Sun Room", room_number: "SUN", level: "12", address: "123 Universe Drive", capacity: 300)
+seed_event.rooms.create(name: "Moon Room", room_number: "MOON", level: "6", address: "123 Universe Drive", capacity: 150)
+seed_event.rooms.create(name: "Venus Theater", room_number: "VEN-T", level: "2", address: "123 Universe Drive", capacity: 75)
 
 # Event Team
 seed_event.teammates.create(user: organizer, email: organizer.email, role: "organizer", state: Teammate::ACCEPTED, notifications: false)
@@ -67,132 +67,128 @@ seed_event.teammates.create(user: reviewer, email: reviewer.email, role: "review
 seed_event.teammates.create(user: speaker_reviewer, email: speaker_reviewer.email, role: "reviewer", state: Teammate::ACCEPTED)
 
 # Proposals - there are no proposals that are either fully "accepted" or offically "not accepted"
-submitted_proposal_1 = seed_event.proposals.create(event_id: seed_event.id,
+submitted_proposal_1 = seed_event.proposals.create(event: seed_event,
                                                    uuid: "abc123",
                                                    title: "Honey Bees",
                                                    abstract: "We will discuss the vital importance of pollinators and how we can help them thrive.",
                                                    details: "Why we need pollinators, what plants they love most, basics of how to start your own hive.",
                                                    pitch: "Learning to be stewards for our insect friends is essential to keeping some of our favorite foods around!",
-                                                   session_format_id: long_session.id,
-                                                   track_id: track_1.id)
+                                                   session_format: long_session,
+                                                   track: track_1)
 
-submitted_proposal_2 = seed_event.proposals.create(event_id: seed_event.id,
+submitted_proposal_2 = seed_event.proposals.create(event: seed_event,
                                                    uuid: "def456",
                                                    title: "Coffee Talk",
                                                    abstract: "We go over what makes a great cup of coffee as well as different methods of preparation.",
                                                    details: "We will talk about the coffee plant itself, the roasting process, and prepare the same beans in a variety of different ways to compare the flavor and nuances.",
                                                    pitch: "You need coffee to live happily, why not be drinking the best tasting versions of your favorite drug?",
-                                                   session_format_id: long_session.id,
-                                                   track_id: track_2.id)
+                                                   session_format: long_session,
+                                                   track: track_2)
 
-waitlisted_proposal = seed_event.proposals.create(event_id: seed_event.id,
-                                                  state: "waitlisted",
-                                                  uuid: "jkl012",
-                                                  title: "Javascript for Dummies",
-                                                  abstract: "This talk is a basic introduction to Javascript and how to use it effectively.",
-                                                  details: "Discussion will include a bit about the history of JS and some high level topics. From there we will learn enough basics to build a simple game together!",
-                                                  pitch: "You + Javascript = Besties for Life!!",
-                                                  session_format_id: short_session.id,
-                                                  track_id: track_3.id)
+soft_waitlisted_proposal = seed_event.proposals.create(event: seed_event,
+                                                       state: "soft waitlisted",
+                                                       uuid: "jkl012",
+                                                       title: "Javascript for Dummies",
+                                                       abstract: "This talk is a basic introduction to Javascript and how to use it effectively.",
+                                                       details: "Discussion will include a bit about the history of JS and some high level topics. From there we will learn enough basics to build a simple game together!",
+                                                       pitch: "You + Javascript = Besties for Life!!",
+                                                       session_format: short_session,
+                                                       track: track_3)
 
-soft_accepted_proposal = seed_event.proposals.create(event_id: seed_event.id,
+soft_accepted_proposal = seed_event.proposals.create(event: seed_event,
                                                      state: "soft accepted",
                                                      uuid: "mno345",
                                                      title: "Vegan Ice Cream",
                                                      abstract: "This is a hands on class where we will make some delicious dairy-and-egg-free concoctions!",
                                                      details: "Participants will learn the basics of how to make a healthy animal-free ice cream as well as how to come up with amazing flavor combinations.",
                                                      pitch: "Who doesn't love ice cream?",
-                                                     session_format_id: internal_session.id,
-                                                     track_id: track_1.id)
+                                                     session_format: internal_session,
+                                                     track: track_1)
 
-soft_rejected_proposal = seed_event.proposals.create(event_id: seed_event.id,
+soft_rejected_proposal = seed_event.proposals.create(event: seed_event,
                                                      state: "soft rejected",
                                                      uuid: "xyz999",
                                                      title: "DIY Unicorn Hat in 30 minutes",
                                                      abstract: "You need to keep your head warm, why not do it with style?",
                                                      details: "It's arts and crafts time! Learn how to make the hat of your dreams with the things already lying around your house.",
                                                      pitch: "Have you really lived this long without a unicorn hat?",
-                                                     session_format_id: short_session.id,
-                                                     track_id: track_2.id)
+                                                     session_format: short_session,
+                                                     track: track_2)
 
-withdrawn_proposal = seed_event.proposals.create(event_id: seed_event.id,
+withdrawn_proposal = seed_event.proposals.create(event: seed_event,
                                                  state: "withdrawn",
                                                  uuid: "pqr678",
                                                  title: "Mystical Vortices",
                                                  abstract: "Learn spiritual energy technics to help cure what ails you.",
                                                  details: "We will enter into the portable vortex I carry in my bag at all times and explore the realms of the unreal.",
                                                  pitch: "Uh, I said VORTICES - what more motivation for coming do you need??",
-                                                 session_format_id: lightning_talk.id,
-                                                 track_id: track_1.id)
+                                                 session_format: lightning_talk,
+                                                 track: track_1)
 
 # Speakers
-submitted_proposal_1.speakers.create(speaker_name: speaker_1.name, speaker_email: speaker_1.email, bio: "I am a speaker for cool events!", user_id: speaker_1.id, event_id: seed_event.id)
-submitted_proposal_1.speakers.create(speaker_name: speaker_2.name, speaker_email: speaker_2.email, bio: "I know a little bit about everything.", user_id: speaker_2.id, event_id: seed_event.id)
-submitted_proposal_2.speakers.create(speaker_name: speaker_2.name, speaker_email: speaker_2.email, bio: "I know a little bit about everything.", user_id: speaker_2.id, event_id: seed_event.id)
-soft_accepted_proposal.speakers.create(speaker_name: speaker_3.name, speaker_email: speaker_3.email, bio: "I am the best speaker in the entire world!", user_id: speaker_3.id, event_id: seed_event.id)
-waitlisted_proposal.speakers.create(speaker_name: speaker_4.name, speaker_email: speaker_4.email, bio: "I specialize in teaching cutting edge programming techniques to beginners.", user_id: speaker_4.id, event_id: seed_event.id)
-soft_rejected_proposal.speakers.create(speaker_name: speaker_5.name, speaker_email: speaker_5.email, bio: "I like cookies and rainbows.", user_id: speaker_5.id, event_id: seed_event.id)
-withdrawn_proposal.speakers.create(speaker_name: speaker_3.name, speaker_email: speaker_3.email, bio: "I am the best speaker in the entire world!", user_id: speaker_3.id, event_id: seed_event.id)
+submitted_proposal_1.speakers.create(speaker_name: speaker_1.name, speaker_email: speaker_1.email, bio: "I am a speaker for cool events!", user: speaker_1, event: seed_event)
+submitted_proposal_1.speakers.create(speaker_name: speaker_2.name, speaker_email: speaker_2.email, bio: "I know a little bit about everything.", user: speaker_2, event: seed_event)
+submitted_proposal_2.speakers.create(speaker_name: speaker_2.name, speaker_email: speaker_2.email, bio: "I know a little bit about everything.", user: speaker_2, event: seed_event)
+soft_accepted_proposal.speakers.create(speaker_name: speaker_3.name, speaker_email: speaker_3.email, bio: "I am the best speaker in the entire world!", user: speaker_3, event: seed_event)
+soft_waitlisted_proposal.speakers.create(speaker_name: speaker_4.name, speaker_email: speaker_4.email, bio: "I specialize in teaching cutting edge programming techniques to beginners.", user: speaker_4, event: seed_event)
+soft_rejected_proposal.speakers.create(speaker_name: speaker_5.name, speaker_email: speaker_5.email, bio: "I like cookies and rainbows.", user: speaker_5, event: seed_event)
+withdrawn_proposal.speakers.create(speaker_name: speaker_3.name, speaker_email: speaker_3.email, bio: "I am the best speaker in the entire world!", user: speaker_3, event: seed_event)
 
 # Proposal Tags
-submitted_proposal_1.taggings.create(proposal_id: submitted_proposal_1.id, tag: "intermediate")
-submitted_proposal_2.taggings.create(proposal_id: submitted_proposal_2.id, tag: "intermediate")
-waitlisted_proposal.taggings.create(proposal_id: waitlisted_proposal.id, tag: "beginner")
-soft_accepted_proposal.taggings.create(proposal_id: soft_accepted_proposal.id, tag: "beginner")
-soft_rejected_proposal.taggings.create(proposal_id: soft_rejected_proposal.id, tag: "beginner")
-withdrawn_proposal.taggings.create(proposal_id: withdrawn_proposal.id, tag: "advanced")
+submitted_proposal_1.taggings.create(tag: "intermediate")
+submitted_proposal_2.taggings.create(tag: "intermediate")
+soft_waitlisted_proposal.taggings.create(tag: "beginner")
+soft_accepted_proposal.taggings.create(tag: "beginner")
+soft_rejected_proposal.taggings.create(tag: "beginner")
+withdrawn_proposal.taggings.create(tag: "advanced")
 
 # Reviewer Tags
-submitted_proposal_1.taggings.create(proposal_id: submitted_proposal_1.id, tag: "beginner", internal: true)
-submitted_proposal_2.taggings.create(proposal_id: submitted_proposal_2.id, tag: "beginner", internal: true)
-waitlisted_proposal.taggings.create(proposal_id: waitlisted_proposal.id, tag: "beginner", internal: true)
-soft_accepted_proposal.taggings.create(proposal_id: soft_accepted_proposal.id, tag: "beginner", internal: true)
-soft_rejected_proposal.taggings.create(proposal_id: soft_rejected_proposal.id, tag: "intermediate", internal: true)
-withdrawn_proposal.taggings.create(proposal_id: withdrawn_proposal.id, tag: "advanced", internal: true)
+submitted_proposal_1.taggings.create(tag: "beginner", internal: true)
+submitted_proposal_2.taggings.create(tag: "beginner", internal: true)
+soft_waitlisted_proposal.taggings.create(tag: "beginner", internal: true)
+soft_accepted_proposal.taggings.create(tag: "beginner", internal: true)
+soft_rejected_proposal.taggings.create(tag: "intermediate", internal: true)
+withdrawn_proposal.taggings.create(tag: "advanced", internal: true)
 
 # Ratings
-submitted_proposal_1.ratings.create(proposal_id: submitted_proposal_1.id, user_id: organizer.id, score: 4)
-submitted_proposal_1.ratings.create(proposal_id: submitted_proposal_1.id, user_id: reviewer.id, score: 3)
-submitted_proposal_1.ratings.create(proposal_id: submitted_proposal_1.id, user_id: track_director.id, score: 5)
+submitted_proposal_1.ratings.create(user: organizer, score: 4)
+submitted_proposal_1.ratings.create(user: reviewer, score: 3)
+submitted_proposal_1.ratings.create(user: track_director, score: 5)
 
-submitted_proposal_2.ratings.create(proposal_id: submitted_proposal_2.id, user_id: organizer.id, score: 4)
-submitted_proposal_2.ratings.create(proposal_id: submitted_proposal_2.id, user_id: speaker_reviewer.id, score: 2)
+submitted_proposal_2.ratings.create(user: organizer, score: 4)
+submitted_proposal_2.ratings.create(user: speaker_reviewer, score: 2)
 
-waitlisted_proposal.ratings.create(proposal_id: waitlisted_proposal.id, user_id: track_director.id, score: 3)
-waitlisted_proposal.ratings.create(proposal_id: waitlisted_proposal.id, user_id: organizer.id, score: 3)
+soft_waitlisted_proposal.ratings.create(user: track_director, score: 3)
+soft_waitlisted_proposal.ratings.create(user: organizer, score: 3)
 
-soft_accepted_proposal.ratings.create(proposal_id: soft_accepted_proposal.id, user_id: organizer.id, score: 4)
-soft_accepted_proposal.ratings.create(proposal_id: soft_accepted_proposal.id, user_id: reviewer.id, score: 3)
-soft_accepted_proposal.ratings.create(proposal_id: soft_accepted_proposal.id, user_id: track_director.id, score: 4)
-soft_accepted_proposal.ratings.create(proposal_id: soft_accepted_proposal.id, user_id: speaker_reviewer.id, score: 5)
+soft_accepted_proposal.ratings.create(user: organizer, score: 4)
+soft_accepted_proposal.ratings.create(user: reviewer, score: 3)
+soft_accepted_proposal.ratings.create(user: track_director, score: 4)
+soft_accepted_proposal.ratings.create(user: speaker_reviewer, score: 5)
 
-soft_rejected_proposal.ratings.create(proposal_id: soft_rejected_proposal.id, user_id: organizer.id, score: 1)
-soft_rejected_proposal.ratings.create(proposal_id: soft_rejected_proposal.id, user_id: reviewer.id, score: 3)
-soft_rejected_proposal.ratings.create(proposal_id: soft_rejected_proposal.id, user_id: track_director.id, score: 1)
-soft_rejected_proposal.ratings.create(proposal_id: soft_rejected_proposal.id, user_id: speaker_reviewer.id, score: 2)
+soft_rejected_proposal.ratings.create(user: organizer, score: 1)
+soft_rejected_proposal.ratings.create(user: reviewer, score: 3)
+soft_rejected_proposal.ratings.create(user: track_director, score: 1)
+soft_rejected_proposal.ratings.create(user: speaker_reviewer, score: 2)
 
-withdrawn_proposal.ratings.create(proposal_id: withdrawn_proposal.id, user_id: organizer.id, score: 5)
-withdrawn_proposal.ratings.create(proposal_id: withdrawn_proposal.id, user_id: reviewer.id, score: 5)
-withdrawn_proposal.ratings.create(proposal_id: withdrawn_proposal.id, user_id: speaker_reviewer.id, score: 4)
+withdrawn_proposal.ratings.create(user: organizer, score: 5)
+withdrawn_proposal.ratings.create(user: reviewer, score: 5)
+withdrawn_proposal.ratings.create(user: speaker_reviewer, score: 4)
 
 # Comments
-organizer.comments.create(proposal_id: submitted_proposal_1.id,
-                          user_id: organizer.id,
+organizer.comments.create(proposal: submitted_proposal_1,
                           body: "This looks great - very informative. Great job!",
                           type: "PublicComment")
 
-reviewer.comments.create(proposal_id: soft_accepted_proposal.id,
-                         user_id: reviewer.id,
+reviewer.comments.create(proposal: soft_accepted_proposal,
                          body: "Oh my goodness, this looks so fun!",
                          type: "PublicComment")
 
-track_director.comments.create(proposal_id: soft_accepted_proposal.id,
-                               user_id: track_director.id,
+track_director.comments.create(proposal: soft_accepted_proposal,
                                body: "Cleary we should accept this talk.",
                                type: "InternalComment")
 
-speaker_reviewer.comments.create(proposal_id: withdrawn_proposal.id,
-                                 user_id: speaker_reviewer.id,
+speaker_reviewer.comments.create(proposal: withdrawn_proposal,
                                  body: "Uhhhh... is this for real? I can't decide if this is amazing or insane.",
                                  type: "InternalComment")
 
