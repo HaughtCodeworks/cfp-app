@@ -32,7 +32,7 @@
       .col-md-6.text-right
         - if proposal.organizer_confirm
           = link_to "Confirm for Speaker", confirm_event_proposal_path(slug: proposal.event.slug, uuid: proposal), class: "btn btn-primary btn-sm"
-        %span.state-buttons #{proposal.state_buttons(show_finalize: false)}
+        %span.state-buttons #{proposal.state_buttons}
     .row
       .col-sm-6
         .proposal-info-bar
