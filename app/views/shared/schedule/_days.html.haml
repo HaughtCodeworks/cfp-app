@@ -9,7 +9,7 @@
 
   %tbody
     - conference_day = ConferenceDay.new(day, current_event)
-    - conference_day.time_slots.each do |conf_slot|
+    - conference_day.conf_slots.each do |conf_slot|
       %tr
         %td
           %p
