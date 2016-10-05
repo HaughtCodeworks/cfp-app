@@ -6,7 +6,7 @@ class Staff::TimeSlotsController < Staff::SchedulesController
   helper_method :time_slot_decorated
 
   def index
-    @rooms = current_event.rooms.by_grid_position
+    @schedule = Schedule.new(current_event)
     respond_to do |format|
       format.html
       format.csv { send_data time_slots.to_csv }

@@ -13,6 +13,7 @@ class TimeSlot < ActiveRecord::Base
   scope :by_room, -> do
     joins(:room).where.not(rooms: {grid_position: nil}).sort_by { |slot| slot.room.grid_position }
   end
+  scope :grid_order, -> { joins(:room).order(:conference_day, 'rooms.grid_position', :start_time) }
 
   def self.import(file)
     raw_json = file.read # maybe open as well

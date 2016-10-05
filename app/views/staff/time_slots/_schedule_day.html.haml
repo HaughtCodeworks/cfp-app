@@ -1,0 +1,8 @@
+.schedule-grid
+  .ruler
+
+  - schedule.each_room(day) do |room, slots|
+    .column
+      .room= room.name
+      - slots.each do |ts|
+        %div{id: "time_slot_#{dom_id(ts)}"}
