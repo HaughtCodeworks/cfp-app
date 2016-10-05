@@ -8,7 +8,7 @@
           = room.name
 
   %tbody
-    - conference_day = ConferenceDay.new(day, @event)
+    - conference_day = ConferenceDay.new(day, current_event)
     - conference_day.time_slots.each do |conf_slot|
       %tr
         %td

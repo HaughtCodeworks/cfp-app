@@ -61,10 +61,6 @@ class Staff::TimeSlotDecorator < Draper::Decorator
     end
   end
 
-  def session_confirmation_notes
-    object.program_session.try(:proposal).try(:confirmation_notes)
-  end
-
   def linked_title
     if object.program_session.present?
       h.link_to(object.program_session.title,
@@ -99,7 +95,11 @@ class Staff::TimeSlotDecorator < Draper::Decorator
   end
 
   def conference_wide_title
-    title + ": " + room_name
+    display_title + ": " + room_name
+  end
+
+  def session_confirmation_notes
+    object.program_session.try(:proposal).try(:confirmation_notes)
   end
 
   def supplemental_fields_visibility_css

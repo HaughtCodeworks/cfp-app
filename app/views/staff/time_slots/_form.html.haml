@@ -1,5 +1,5 @@
 .form-inline
-  = f.input :conference_day, collection: event.days_for, label: 'Day'
+  = f.input :conference_day, collection: 1..event.days, label: 'Day'
   = f.input :room_id, collection: current_event.rooms, include_blank: true
 .form-inline
   = f.input :start_time, as: :string, input_html: { value: time_slot.start_time }

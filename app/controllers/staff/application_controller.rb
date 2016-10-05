@@ -1,4 +1,5 @@
 class Staff::ApplicationController < ApplicationController
+  before_action :require_user
   before_action :require_event
   before_action :require_staff
 
