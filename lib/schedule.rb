@@ -12,9 +12,9 @@ class Schedule
   end
 
   def each_room(day)
-    rooms.each_with_index do |r, i|
+    rooms.each do |r|
       room_slots = slots[day][r] if slots[day]
-      yield(r, room_slots || [], i)
+      yield(r, room_slots || [])
     end
   end
 

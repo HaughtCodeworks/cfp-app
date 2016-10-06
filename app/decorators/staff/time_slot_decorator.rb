@@ -84,14 +84,14 @@ class Staff::TimeSlotDecorator < Draper::Decorator
 
   def item_data
     ts = object
-    starts = (ts.start_time.to_i - ts.start_time.beginning_of_day.to_i)/60
-    ends = (ts.end_time.to_i - ts.end_time.beginning_of_day.to_i)/60
+    min = 60*8 # start at 8am
+    starts = (ts.start_time.to_i - ts.start_time.beginning_of_day.to_i)/60 - min
+    ends = (ts.end_time.to_i - ts.end_time.beginning_of_day.to_i)/60 - min
     {
-        gs_x: 1,
-        gs_y: starts,
+        gs_x: 0,
+        gs_y: starts/5,
         gs_width: 1,
-        gs_height: ends - starts,
-        gs_no_resize: true
+        gs_height: (ends - starts)/5
     }
   end
 

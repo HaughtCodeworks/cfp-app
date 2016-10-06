@@ -1,20 +1,53 @@
 .schedule-grid {
-  width: 800px;
+  height: 800px;
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: stretch;
+  font-size: $font-size-xs;
 
   .ruler {
-
-  }
-
-  .column {
     width: 60px;
-
   }
 
-  .room {
+  .room-column {
+    width: 140px;
+    padding: 0;
+    margin: 0;
+    border: 1px solid #bbb;
   }
 
-  .time-slot-content {
-    background-color: #bbb;
+  .column-header {
+    font-size: $font-size-small;
+    font-weight: 700;
+    text-align: center;
+    width: 140px;
+    border-bottom: 1px solid #bbb;
+  }
+
+  $gridstack-columns: 1;
+
+  .time-slots {
+  }
+
+  .time-slot.grid-stack-item {
+    border: 1px solid green;
+    text-align: center;
+    background: rgba(0, 255, 0, 0.1);
+    cursor: default;
+
+    @for $i from 1 through $gridstack-columns {
+      &[data-gs-width='#{$i}'] { width: (100% / $gridstack-columns) * $i; }
+      &[data-gs-x='#{$i - 1}'] { left: (100% / $gridstack-columns) * ($i - 1); }
+      &.grid-stack-item[data-gs-min-width='#{$i}'] { min-width: (100% / $gridstack-columns) * $i; }
+      &.grid-stack-item[data-gs-max-width='#{$i}'] { max-width: (100% / $gridstack-columns) * $i; }
+    }
+  }
+
+  .grid-stack .grid-stack-placeholder > .placeholder-content {
+    width: 120px;
+  }
+
+    .time-slot-content {
   }
 
 }
