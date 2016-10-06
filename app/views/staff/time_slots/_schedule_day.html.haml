@@ -1,8 +1,13 @@
-.schedule-grid
-  .ruler
-
-  - schedule.each_room(day) do |room, slots|
-    .column
-      .room= room.name
-      - slots.each do |ts|
-        %div{id: "time_slot_#{dom_id(ts)}"}
+.ruler
+.schedule-grid.grid-stack{data: { gs_width: schedule.rooms.size }}
+  - schedule.each_room(day) do |room, slots, i|
+    .column.grid-stack-item{data: { gs_x: i, gs_y: 1, gs_width: 1, gs_height: 1 }}
+      .grid-stack-item-content
+        .column-header.room= room.name
+        %div
+          .time-slots
+            - slots.each do |ts|
+              - ts = Staff::TimeSlotDecorator.decorate(ts)
+              .time-slot.grid-stack-item{id: "time_slot_#{dom_id(ts)}", data: ts.item_data}
+                .time-slot-content.grid-stack-item-content
+                  =ts.title

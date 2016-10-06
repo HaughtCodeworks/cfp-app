@@ -16,7 +16,7 @@ class Staff::TimeSlotDecorator < Draper::Decorator
 
   def row_data(buttons: false)
     row = [object.conference_day, start_time, end_time, linked_title,
-           display_presenter, room_name, track_name]
+           object.presenter, object.room_name, object.track_name]
 
     row << action_links if buttons
     row
@@ -54,7 +54,7 @@ class Staff::TimeSlotDecorator < Draper::Decorator
       [ps.title, ps.id, { selected: ps == object.program_session, data: {
           'title' => ps.title,
           'track' => ps.track.try(:name),
-          'speaker' => speaker_names(ps),
+          'speaker' => ps.speaker_names,
           'abstract' => ps.abstract,
           'confirmation-notes' => ps.proposal.try(:confirmation_notes) || ''
       }}]
@@ -70,36 +70,8 @@ class Staff::TimeSlotDecorator < Draper::Decorator
     end
   end
 
-  def display_title
-    object.program_session && object.program_session.title || object.title
-  end
-
-  def display_presenter
-    object.program_session && speaker_names(object.program_session) || object.presenter
-  end
-
-  def display_description
-    object.program_session && object.program_session.abstract || object.description
-  end
-
-  def track_name
-    object.program_session && object.program_session.track.try(:name) || object.track.try(:name)
-  end
-
-  def track_id
-    object.program_session && object.program_session.track_id || object.track_id
-  end
-
-  def room_name
-    object.room.try(:name)
-  end
-
   def conference_wide_title
-    display_title + ": " + room_name
-  end
-
-  def session_confirmation_notes
-    object.program_session.try(:proposal).try(:confirmation_notes)
+    object.title + ": " + room_name
   end
 
   def supplemental_fields_visibility_css
@@ -108,6 +80,19 @@ class Staff::TimeSlotDecorator < Draper::Decorator
 
   def cell_data_attr
     {"time-slot-edit-path" => h.edit_event_staff_time_slot_path(object.event, object), toggle: 'modal', target: "#time-slot-edit-dialog"}
+  end
+
+  def item_data
+    ts = object
+    starts = (ts.start_time.to_i - ts.start_time.beginning_of_day.to_i)/60
+    ends = (ts.end_time.to_i - ts.end_time.beginning_of_day.to_i)/60
+    {
+        gs_x: 1,
+        gs_y: starts,
+        gs_width: 1,
+        gs_height: ends - starts,
+        gs_no_resize: true
+    }
   end
 
   private

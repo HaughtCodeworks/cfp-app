@@ -1,3 +1,5 @@
 #schedule
   - schedule.each_day do |day|
-    = render partial: 'schedule_day', locals: { schedule: schedule, day: day }
+    .row
+      .col-md-12
+        = render partial: 'schedule_day', locals: { schedule: schedule, day: day }
