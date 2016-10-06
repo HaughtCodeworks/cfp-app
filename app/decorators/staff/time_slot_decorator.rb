@@ -91,7 +91,10 @@ class Staff::TimeSlotDecorator < Draper::Decorator
         gs_x: 0,
         gs_y: starts/5,
         gs_width: 1,
-        gs_height: (ends - starts)/5
+        gs_height: (ends - starts)/5,
+        edit_path:  h.edit_event_staff_time_slot_path(object.event, object),
+        toggle: 'modal',
+        target: '#time-slot-edit-dialog'
     }
   end
 

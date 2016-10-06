@@ -1,16 +1,18 @@
 .schedule-grid {
-  height: 800px;
   display: flex;
   flex-flow: row nowrap;
   align-items: stretch;
+
+  height: 800px;
   font-size: $font-size-xs;
+  margin-bottom: 20px;
 
   .ruler {
     width: 60px;
   }
 
   .room-column {
-    width: 140px;
+    width: 110px;
     padding: 0;
     margin: 0;
     border: 1px solid #bbb;
@@ -20,7 +22,7 @@
     font-size: $font-size-small;
     font-weight: 700;
     text-align: center;
-    width: 140px;
+    width: 110px;
     border-bottom: 1px solid #bbb;
   }
 
@@ -44,7 +46,7 @@
   }
 
   .grid-stack .grid-stack-placeholder > .placeholder-content {
-    width: 120px;
+    width: 90px;
   }
 
     .time-slot-content {
