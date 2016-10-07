@@ -10,6 +10,7 @@ GIT
 
 GEM
   remote: https://rubygems.org/
+  remote: https://rails-assets.org/
   specs:
     actionmailer (4.2.5)
       actionpack (= 4.2.5)
@@ -126,11 +127,6 @@ GEM
     formatador (0.2.5)
     globalid (0.3.6)
       activesupport (>= 4.1.0)
-    gridstack-js-rails (0.2.6)
-      jquery-rails (>= 3.0.5)
-      jquery-ui-rails (>= 5.0.0)
-      lodash-rails (>= 3.5.0)
-      underscore-rails (>= 1.7.0)
     groupdate (2.5.0)
       activesupport (>= 3)
     growl (1.0.3)
@@ -182,8 +178,6 @@ GEM
     listen (3.0.5)
       rb-fsevent (>= 0.9.3)
       rb-inotify (>= 0.9)
-    lodash-rails (4.16.1)
-      railties (>= 3.1)
     loofah (2.0.3)
       nokogiri (>= 1.5.9)
     lumberjack (1.0.10)
@@ -262,6 +256,7 @@ GEM
       bundler (>= 1.3.0, < 2.0)
       railties (= 4.2.5)
       sprockets-rails
+    rails-assets-momentjs (2.15.1)
     rails-deprecated_sanitizer (1.0.3)
       activesupport (>= 4.2.0.alpha)
     rails-dom-testing (1.0.7)
@@ -343,7 +338,6 @@ GEM
     uglifier (2.7.2)
       execjs (>= 0.3.0)
       json (>= 1.8.0)
-    underscore-rails (1.8.3)
     warden (1.2.6)
       rack (>= 1.0)
     web-console (2.2.1)
@@ -379,7 +373,6 @@ DEPENDENCIES
   factory_girl_rails
   faker
   foreman
-  gridstack-js-rails
   groupdate
   growl
   guard
@@ -403,6 +396,7 @@ DEPENDENCIES
   rack-mini-profiler
   rack-timeout (~> 0.2.4)
   rails (= 4.2.5)
+  rails-assets-momentjs!
   rails_12factor
   redcarpet (~> 3.0.0)
   responders (~> 2.0)

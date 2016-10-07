@@ -1,12 +1,11 @@
-.schedule-grid
-  .ruler
-
+.schedule-grid{id: "schedule_day_#{day}"}
+  %ul.ruler
   - schedule.each_room(day) do |room, slots|
     .room-column
       .column-header= room.name
-      .time-slots.grid-stack
+      .time-slots
+        &nbsp;
         - slots.each do |ts|
           - ts = Staff::TimeSlotDecorator.decorate(ts)
-          .time-slot.grid-stack-item{id: "time_slot_#{dom_id(ts)}", data: ts.item_data}
-            .time-slot-content.grid-stack-item-content
-              =ts.title
+          .time-slot{id: "time_slot_#{dom_id(ts)}", data: ts.item_data}
+            .title=ts.title

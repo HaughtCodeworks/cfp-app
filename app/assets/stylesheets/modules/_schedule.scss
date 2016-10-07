@@ -1,55 +1,77 @@
 .schedule-grid {
+  $day-start: 8*60px;
+  $day-end: 20*60px;
+  $time-range: $day-end - $day-start;
+  $time-step: 60px;
+  $vertical-scale: 1.0;
+  $pixel-range: $time-range * $vertical-scale;
+  $pixel-step: $time-step * $vertical-scale;
+
   display: flex;
   flex-flow: row nowrap;
   align-items: stretch;
 
-  height: 800px;
   font-size: $font-size-xs;
   margin-bottom: 20px;
+  border-collapse: collapse;
+
+  .ruler, .ruler li {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
 
   .ruler {
-    width: 60px;
+    border-radius: 2px;
+    color: #000;
+    margin: 18px 0 0 0;
+    width: 70px;
+    white-space: nowrap;
+    height: $pixel-range;
+  }
+
+  .ruler li {
+    height: $pixel-step;
+    text-align: center;
+    position: relative;
+  }
+
+  .ruler li:before {
+    content: '';
+    position: absolute;
+    border-bottom: 1px solid #999;
+    width: .64em;
+    top: .6em;
+    right: 0;
   }
 
   .room-column {
     width: 110px;
-    padding: 0;
-    margin: 0;
-    border: 1px solid #bbb;
+    padding: 6px;
+    margin: 0 6px;
+    background: rgba(170, 57, 57, 0.3);
   }
 
   .column-header {
     font-size: $font-size-small;
-    font-weight: 700;
+    line-height: $line-height-small;
+    font-weight: 800;
     text-align: center;
-    width: 110px;
-    border-bottom: 1px solid #bbb;
+    width: 100%;
   }
-
-  $gridstack-columns: 1;
 
   .time-slots {
+    height: $pixel-range;
+    position: relative;
   }
 
-  .time-slot.grid-stack-item {
-    border: 1px solid green;
+  .time-slot {
+    position: absolute;
+    border: 2px solid #567714;
+    width: 100%;
     text-align: center;
-    background: rgba(0, 255, 0, 0.1);
+    background: #D4EE9F;
     cursor: default;
-
-    @for $i from 1 through $gridstack-columns {
-      &[data-gs-width='#{$i}'] { width: (100% / $gridstack-columns) * $i; }
-      &[data-gs-x='#{$i - 1}'] { left: (100% / $gridstack-columns) * ($i - 1); }
-      &.grid-stack-item[data-gs-min-width='#{$i}'] { min-width: (100% / $gridstack-columns) * $i; }
-      &.grid-stack-item[data-gs-max-width='#{$i}'] { max-width: (100% / $gridstack-columns) * $i; }
-    }
-  }
-
-  .grid-stack .grid-stack-placeholder > .placeholder-content {
-    width: 90px;
-  }
-
-    .time-slot-content {
   }
 
 }
