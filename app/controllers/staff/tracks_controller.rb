@@ -1,4 +1,4 @@
-class Staff::TracksController < Staff::SchedulesController
+class Staff::TracksController < Staff::ApplicationController
 
   before_action :set_track, only: [:edit, :update, :destroy]
 

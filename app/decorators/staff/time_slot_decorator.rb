@@ -29,13 +29,13 @@ class Staff::TimeSlotDecorator < Draper::Decorator
   def action_links
     [
       h.link_to('Edit',
-                h.edit_event_staff_time_slot_path(object.event, object),
+                h.edit_event_staff_schedule_time_slot_path(object.event, object),
                 class: 'btn btn-primary btn-xs',
                 remote: true,
                 data: {toggle: 'modal', target: "#time-slot-edit-dialog"}),
 
       h.link_to('Remove',
-                h.event_staff_time_slot_path(object.event, object),
+                h.event_staff_schedule_time_slot_path(object.event, object),
                 method: :delete,
                 data: {confirm: "Are you sure you want to remove this time slot?"},
                 remote: true,
@@ -79,7 +79,7 @@ class Staff::TimeSlotDecorator < Draper::Decorator
   end
 
   def cell_data_attr
-    {"time-slot-edit-path" => h.edit_event_staff_time_slot_path(object.event, object), toggle: 'modal', target: "#time-slot-edit-dialog"}
+    {"time-slot-edit-path" => h.edit_event_staff_schedule_time_slot_path(object.event, object), toggle: 'modal', target: "#time-slot-edit-dialog"}
   end
 
   def item_data
@@ -90,7 +90,7 @@ class Staff::TimeSlotDecorator < Draper::Decorator
         starts: starts,
         duration: ends - starts,
         track: object.track_name,
-        edit_path:  h.edit_event_staff_time_slot_path(object.event, object),
+        edit_path:  h.edit_event_staff_schedule_time_slot_path(object.event, object),
         toggle: 'modal',
         target: '#time-slot-edit-dialog'
     }

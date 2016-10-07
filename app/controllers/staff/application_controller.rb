@@ -26,4 +26,11 @@ class Staff::ApplicationController < ApplicationController
     end
   end
 
+  def require_organizer
+    unless current_user.organizer_for_event?(current_event)
+      flash[:danger] = "You must be an organizer to access this page."
+      redirect_to event_staff_path(current_event)
+    end
+  end
+
 end
