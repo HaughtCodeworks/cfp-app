@@ -24,4 +24,31 @@ $(function() {
   $('.speaker-invite-button').click(function() {
     $('.speaker-invite-form').toggle();
   });
+
+  $('#edit-tags-icon').click(function() {
+    $('.reviewer-tags-form-wrapper').slideToggle();
+  });
+
+  if($('#autocomplete-options').length > 0) {
+    var html = $('#autocomplete-options').html();
+    var data = JSON.parse(html);
+    var items = data.map(function(x) { return { item: x }; });
+
+    $('#proposal_review_tags').selectize({
+      delimiter: ',',
+      persist: false,
+      plugins: ['remove_button'],
+      options: items,
+      valueField: 'item',
+      labelField: 'item',
+      searchField: 'item',
+      create: function(input) {
+        return {
+            value: input,
+            text: input,
+            item: input
+        }
+      }
+    });
+  }
 });

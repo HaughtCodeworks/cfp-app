@@ -1,2 +1,3 @@
 document.getElementById('flash').innerHTML = '<%=j show_flash %>';
-$('.proposal-reviewer-tags').html('<%=j proposal.review_tags_labels %>');
+$('.proposal-reviewer-tags').html('<%=j proposal.review_tags_labels %>' || '<em>None</em>');
+$('.reviewer-tags-form-wrapper').hide();

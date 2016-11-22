@@ -19,33 +19,17 @@
 .proposal-actions-bar
   .row
     .col-md-offset-8.col-md-4.text-right
-      = link_to(event_staff_proposals_path, class: "btn btn-primary btn-sm") do
-        &laquo; Return to Proposals
-      = link_to "Next Proposal", event_staff_proposal_path(uuid: "PLACEHOLDER"), class: "next-proposal btn btn-primary btn-sm", data: {"proposal-uuid" => proposal.uuid }
+      .btn-nav
+        = link_to(event_staff_proposals_path, class: "btn btn-primary btn-sm") do
+          &laquo; Return to Proposals
+        = link_to "Next Proposal", event_staff_proposal_path(uuid: "PLACEHOLDER"), class: "next-proposal btn btn-primary btn-sm", data: {"proposal-uuid" => proposal.uuid }
 
 #proposal
   .page-header.page-header-slim
     .row
-      .col-md-8
+      .col-md-6
         %h1
           = proposal.title
-    .row
-      .col-sm-6
-        .proposal-info-bar
-          .proposal-meta.proposal-description
-            .proposal-meta-item
-              %strong #{ 'Speaker'.pluralize(proposal.speakers.count) }:
-              %span Blind
-            .proposal-meta-item
-              %strong Format:
-              %span #{proposal.session_format_name}
-            .proposal-meta-item
-              %strong Track:
-              %span #{proposal.track_name}
-            -if proposal.tags.present?
-              .proposal-meta-item
-                %strong Tags:
-                %span #{proposal.tags_labels}
       .col-sm-6.text-right
         .proposal-info-bar
           .proposal-meta.proposal-description
@@ -55,11 +39,39 @@
             .proposal-meta-item
               %strong Updated:
               %span #{proposal.updated_in_words}
-            -if proposal.review_tags.present?
-              .proposal-meta-item
-                %strong Reviewer Tags:
-                %span.proposal-reviewer-tags #{proposal.review_tags_labels}
 
+    .row
+      .col-sm-6
+        .proposal-info-bar
+          .proposal-meta.proposal-description
+            .proposal-meta-item
+              .info-item-heading #{ 'Speaker'.pluralize(proposal.speakers.count) }
+              Blind
+            .proposal-meta-item
+              .info-item-heading Format
+              #{proposal.session_format_name}
+            .proposal-meta-item
+              .info-item-heading Track
+              #{proposal.track_name}
+            -if proposal.tags.present?
+              .proposal-meta-item
+                .info-item-heading Tags
+                #{proposal.tags_labels}
+      .col-sm-6.text-right
+        .proposal-info-bar
+          .proposal-meta.proposal-description
+            .proposal-meta-item
+              .info-item-heading.review-tags-heading
+                %div.inline Reviewer Tags
+                #edit-tags-icon.fa.fa-pencil-square-o
+              .proposal-reviewer-tags{ style: 'text-align:left;' }
+                -if proposal.review_tags.present?
+                  #{proposal.review_tags_labels}
+                -else
+                  %em None
+
+        .reviewer-tags-form-wrapper
+          = render 'shared/proposals/tags_form', locals: { event: event, proposal: proposal }
   .row
     .col-md-4
       = render partial: 'reviewer_contents', locals: { proposal: proposal }
@@ -75,16 +87,15 @@
 
     .col-md-4
       .widget.widget-card.widget-card-alt.flush-top
-        .widget-header
-          %h3 Review
+        - unless allow_rating?(proposal) || show_ratings?(rating) || proposal.internal_comments_style.nil?
+          .widget-header
+            %h3 Rating and Internal Comments
+          .widget-content
+            %p
+              %em N/A
+
         .widget-content
           = render partial: 'shared/proposals/rating_form', locals: { event: event, proposal: proposal, rating: rating }
-
-        - if event.reviewer_tags?
-          .widget-header
-            %h3 Reviewer Tags
-          .widget-content
-            = render partial: 'shared/proposals/tags_form', locals: { event: event, proposal: proposal }
 
         .internal-comments{ style: proposal.internal_comments_style }
           .widget-header
