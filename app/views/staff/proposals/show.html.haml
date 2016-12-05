@@ -57,10 +57,17 @@
               %strong Track:
               %span
                 = render 'inline_track_edit', proposal: proposal
-            -if proposal.review_tags.present?
               .proposal-meta-item
                 %strong Reviewer Tags:
-                %span.proposal-reviewer-tags #{proposal.review_tags_labels}
+                %span.proposal-reviewer-tags
+                  -if proposal.review_tags.present?
+                    #{proposal.review_tags_labels}
+                  -else
+                    %em None
+                %i#edit-tags-icon.fa.fa-pencil
+        .review-tags-form-wrapper
+          = render 'shared/proposals/tags_form', locals: { event: event, proposal: proposal }
+
 
   .row
     .col-md-4
@@ -81,7 +88,7 @@
       .widget.widget-card.flush-top
         .widget-header
           %i.fa.fa-comments
-          %h3= pluralize(proposal.public_comments.count, 'public comment')
+          %h3.comments-heading= pluralize(proposal.public_comments.count, 'Public Comment')
         .widget-content
           = render partial: 'proposals/comments', locals: { proposal: proposal, comments: proposal.public_comments }
 
@@ -98,15 +105,9 @@
         .widget-content
           = render partial: 'shared/proposals/rating_form', locals: { event: event, proposal: proposal, rating: @rating }
 
-        - if event.reviewer_tags?
-          .widget-header
-            %h3 Reviewer Tags
-          .widget-content
-            = render partial: 'shared/proposals/tags_form', locals: { event: event, proposal: proposal }
-
         .internal-comments
           .widget-header
             %i.fa.fa-comments
-            %h3= pluralize(proposal.internal_comments.count, 'internal comment')
+            %h3.comments-heading= pluralize(proposal.internal_comments.count, 'Internal Comment')
           .widget-content
             = render partial: 'proposals/comments', locals: { proposal: proposal, comments: proposal.internal_comments }
