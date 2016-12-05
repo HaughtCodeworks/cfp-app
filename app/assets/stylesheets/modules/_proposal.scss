@@ -131,6 +131,9 @@ div.col-md-4 {
   h3 {
     display: inline-block;
   }
+  h3.comments-heading {
+    padding-left: 5px;
+  }
 }
 
 .invite-btns {
@@ -150,7 +153,7 @@ div.col-md-4 {
   margin-left: 5px;
 }
 
-.reviewer-tags-form-wrapper {
+.review-tags-form-wrapper {
   display: none;
   padding-top: 5px;
   text-align: left;
@@ -159,6 +162,12 @@ div.col-md-4 {
   }
   .form-group {
     display: inline-block;
+  }
+  .form-group.col-sm-8 {
+    padding-right: 0%;
+  }
+  .form-group.col-sm-2 {
+    padding-right: 1%;
   }
   .selectize-input.items .item {
     background: $state-success-bg;
@@ -203,7 +212,8 @@ div.col-md-4 {
         margin-bottom: 0;
       }
       .info-item-heading {
-        text-decoration: underline;
+        color: $gray;
+        font-size: $font-size-xs;
       }
     }
     .review-tags-heading {

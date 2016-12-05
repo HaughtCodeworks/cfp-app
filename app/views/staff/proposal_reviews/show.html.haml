@@ -61,16 +61,14 @@
         .proposal-info-bar
           .proposal-meta.proposal-description
             .proposal-meta-item
-              .info-item-heading.review-tags-heading
-                %div.inline Reviewer Tags
-                #edit-tags-icon.fa.fa-pencil-square-o
-              .proposal-reviewer-tags{ style: 'text-align:left;' }
+              .info-item-heading.review-tags-heading Reviewer Tags
+              .proposal-reviewer-tags{ style: 'float:left;' }
                 -if proposal.review_tags.present?
                   #{proposal.review_tags_labels}
                 -else
                   %em None
-
-        .reviewer-tags-form-wrapper
+              #edit-tags-icon.fa.fa-pencil
+        .review-tags-form-wrapper
           = render 'shared/proposals/tags_form', locals: { event: event, proposal: proposal }
   .row
     .col-md-4
@@ -80,7 +78,7 @@
       .widget.widget-card.flush-top
         .widget-header
           %i.fa.fa-comments
-          %h3= pluralize(proposal.public_comments.count, 'public comment')
+          %h3.comments-heading= pluralize(proposal.public_comments.count, 'Public Comment')
         .widget-content
           = render partial: 'proposals/comments',
             locals: { proposal: proposal, comments: proposal.public_comments }
@@ -89,10 +87,10 @@
       .widget.widget-card.widget-card-alt.flush-top
         - unless allow_rating?(proposal) || show_ratings?(rating) || proposal.internal_comments_style.nil?
           .widget-header
-            %h3 Rating and Internal Comments
+            %h3 Rating
           .widget-content
             %p
-              %em N/A
+              %em Ratings are closed
 
         .widget-content
           = render partial: 'shared/proposals/rating_form', locals: { event: event, proposal: proposal, rating: rating }
@@ -100,7 +98,7 @@
         .internal-comments{ style: proposal.internal_comments_style }
           .widget-header
             %i.fa.fa-comments
-            %h3= pluralize(proposal.internal_comments.count, 'internal comment')
+            %h3.comments-heading= pluralize(proposal.internal_comments.count, 'Internal Comment')
           .widget-content
             = render partial: 'proposals/comments',
                 locals: { proposal: proposal, comments: proposal.internal_comments }

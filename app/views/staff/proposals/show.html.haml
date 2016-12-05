@@ -64,8 +64,8 @@
                     #{proposal.review_tags_labels}
                   -else
                     %em None
-                %i#edit-tags-icon.fa.fa-pencil-square-o
-        .reviewer-tags-form-wrapper
+                %i#edit-tags-icon.fa.fa-pencil
+        .review-tags-form-wrapper
           = render 'shared/proposals/tags_form', locals: { event: event, proposal: proposal }
 
 
@@ -88,7 +88,7 @@
       .widget.widget-card.flush-top
         .widget-header
           %i.fa.fa-comments
-          %h3= pluralize(proposal.public_comments.count, 'public comment')
+          %h3.comments-heading= pluralize(proposal.public_comments.count, 'Public Comment')
         .widget-content
           = render partial: 'proposals/comments', locals: { proposal: proposal, comments: proposal.public_comments }
 
@@ -108,6 +108,6 @@
         .internal-comments
           .widget-header
             %i.fa.fa-comments
-            %h3= pluralize(proposal.internal_comments.count, 'internal comment')
+            %h3.comments-heading= pluralize(proposal.internal_comments.count, 'Internal Comment')
           .widget-content
             = render partial: 'proposals/comments', locals: { proposal: proposal, comments: proposal.internal_comments }

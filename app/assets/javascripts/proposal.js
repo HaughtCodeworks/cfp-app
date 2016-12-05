@@ -26,7 +26,13 @@ $(function() {
   });
 
   $('#edit-tags-icon').click(function() {
-    $('.reviewer-tags-form-wrapper').slideToggle();
+    $('.proposal-reviewer-tags, #edit-tags-icon').toggle();
+    $('.review-tags-form-wrapper').slideToggle();
+  });
+
+  $('#cancel-tags-editing').click(function() {
+    $('.review-tags-form-wrapper').toggle();
+    $('.proposal-reviewer-tags, #edit-tags-icon').toggle();
   });
 
   if($('#autocomplete-options').length > 0) {
