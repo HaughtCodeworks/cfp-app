@@ -16,7 +16,7 @@ At a high level the CFP App allows speakers to submit and manage their proposals
 
 ## Getting Started
 
-Make sure you have Ruby 2.3 and Postgres installed in your environment.  This is a Rails 4.2 app and uses bundler to install all required gems.  We are also making the assumption that you're familiar with how Rails apps and setup and deployed.  If this is not the case then you'll want to refer to documentation that will bridge any gaps in the instructions below.
+Make sure you have Ruby 2.4.2 and Postgres installed in your environment.  This is a Rails 5.1.4 app and uses bundler to install all required gems.  We are also making the assumption that you're familiar with how Rails apps and setup and deployed.  If this is not the case then you'll want to refer to documentation that will bridge any gaps in the instructions below.
 
 Run [bin/setup](bin/setup) script to install gem dependencies and setup database for development.
 
@@ -24,7 +24,7 @@ Run [bin/setup](bin/setup) script to install gem dependencies and setup database
 bin/setup
 ```
 
-This will create `.env`, a development database with seed data. Seed will make an admin user with an email of `an@admin.com` to get started. There is a special, development only login method in Omniauth that you can use to test it out.
+This will create `.env`, a development database with seed data. Seed will make an admin user with an email of `an@admin.com` and password of `userpass` to get started. There is a special, development only login method in Omniauth that you can use to test it out.
 
 NOTE: You may need to install Qt/`qmake` to get Capybara to work; with Homebrew you can run `brew install qt`.
 
@@ -44,7 +44,7 @@ This will boot up using Foreman and allow the .env file to be read / set for use
 
 ### Environment variables
 
-[Omniauth](http://intridea.github.io/omniauth/) is set up to use Twitter and Github for logins in production. You'll want to put your own key and secret in for both. Other environment variables will include your postgres user and Rails' secret\_token.
+[Omniauth](https://github.com/omniauth/omniauth) is set up to use Twitter and Github for logins in production. You'll want to put your own key and secret in for both. Other environment variables will include your postgres user and Rails' secret\_token.
 
     TIMEZONE (defaults to Pacific if not set)
     POSTGRES_USER (dev/test only)
