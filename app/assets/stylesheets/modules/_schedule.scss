@@ -232,7 +232,7 @@ body .custom-session-card {
       width: 10px;
       top: .6em;
       left: 60px;
-      z-index: 11;
+      z-index: 9;
     }
   }
 
@@ -294,7 +294,7 @@ body .custom-session-card {
     font-size: $font-size-small;
     background: #FFF;
     cursor: pointer;
-    z-index: 15;
+    z-index: 10;
     border-width: 1px .5px .5px 0;
 
     &.draggable-hover {
