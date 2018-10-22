@@ -67,6 +67,10 @@ $column-width: 180px;
   margin: 2em auto;
   max-height: 200vh;
   overflow-y: scroll;
+
+  .draggable-session-card {
+    margin: 1em auto;
+  }
 }
 
 // the draggable session card has a different appearance depending on context:
@@ -74,7 +78,7 @@ $column-width: 180px;
 // in the body (as it's being dragged) and global
 body .draggable-session-card,
 body .custom-session-card {
-  margin: 1em auto;
+  // margin: 1em auto;
   width: $column-width;
   box-shadow: 0 1px 2px rgba(0,0,0,.6);
   height: 90px;
@@ -85,7 +89,7 @@ body .custom-session-card {
   opacity: .5;
 
   .session-card-body {
-    padding: 1em .5em;
+    padding: .5em;
     div {
       padding: .25em 0;
     }
@@ -119,26 +123,14 @@ body .custom-session-card {
   opacity: 1;
   height: 100%;
   width: 100%;
-  margin: 0;
   box-shadow: none;
 
   &.small {
-    .track span,
-    .format,
-    .presenter {
-      display: none;
-    }
-
     .title {
       position: absolute;
       top: 50%;
       width: 100%;
-      color: white;
-      transform: translateY(-50%);
-    }
-
-    .track {
-      height: 100%;
+      padding-top: 4px;
     }
   }
 
@@ -212,11 +204,11 @@ body .custom-session-card {
   }
 
   .ruler {
-    width: 70px;
+    width: 45px;
     border-radius: 2px;
     color: #000;
     font-size: $font-size-xs;
-    margin: 67px 0 0 0;
+    margin: 37px 5px 0 0;
     white-space: nowrap;
   }
 
@@ -256,7 +248,7 @@ body .custom-session-card {
     align-items: center;
     justify-content: center;
     width: 100%;
-    height: 70px;
+    height: 40px;
     font-size: $font-size-base;
     line-height: $line-height-base;
     text-align: center;
@@ -281,6 +273,8 @@ body .custom-session-card {
     background: rgb(230, 230, 230);
     margin-top: 4px;
     border-width: 0 1px 0 0;
+    display: flex;
+    justify-content:center;
   }
 
   .room-column:first-of-type .time-slots {
@@ -289,7 +283,7 @@ body .custom-session-card {
 
   .time-slot {
     position: absolute;
-    width: 100%;
+    width: calc(100% - 6px);
     text-align: left;
     font-size: $font-size-small;
     background: #FFF;
