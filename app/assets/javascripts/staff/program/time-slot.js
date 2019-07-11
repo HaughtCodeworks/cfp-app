@@ -111,16 +111,8 @@
     } else {
       table = opt_table;
     }
-<<<<<<< HEAD
     
     table.api().row.add($(row_obj)).draw()
-=======
-
-    var index = table.fnAddData(row_obj.values);
-
-    var row = $(table.fnGetNodes(index));
-    row.attr('id', 'time_slot_' + row_obj.id);
->>>>>>> 62bc0150ef5893e77a9d26cfe3de67af2b2c3d25
   }
 
 
